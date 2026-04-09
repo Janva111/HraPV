@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "HraPV": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
