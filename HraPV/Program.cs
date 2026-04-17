@@ -10,13 +10,16 @@ class Program
 
     static async Task Main()
     {
+        World.LoadWorld("World.json");
+
         TcpListener listener = new(IPAddress.Any, Port);
         listener.Start();
-        Console.WriteLine($"[SERVER] Rytířský MUD spuštěn na portu {Port}...");
+        Console.WriteLine($"[SERVER] Knightly MUD started on port {Port}...");
 
         while (true)
         {
             TcpClient client = await listener.AcceptTcpClientAsync();
+            // Handle each client in a separate thread (Task)
             _ = Task.Run(() => HandleClient(client));
         }
     }
@@ -31,7 +34,7 @@ class Program
             Player? player = null;
             try
             {
-                await writer.WriteLineAsync("Vítej v online středověku! Zadej své jméno:");
+                await writer.WriteLineAsync("Welcome to the Medieval Online! Enter your name:");
                 await writer.FlushAsync();
 
                 string? name = await reader.ReadLineAsync();
@@ -40,23 +43,29 @@ class Program
                 player = new Player(client, writer) { Name = name.Trim() };
                 Engine.AddPlayer(player);
 
-                await Engine.Broadcast($"*** Rytíř {player.Name} vjel do hradu ***", player);
+                await Engine.Broadcast($"*** Knight {player.Name} has entered the castle ***", player);
                 await Engine.ShowRoom(player);
 
                 string? line;
                 while ((line = await reader.ReadLineAsync()) != null)
                 {
-                    if (line.Trim().ToLower() == "konec") break;
+                    string command = line.Trim().ToLower();
+
+                    if (command == "quit" || command == "exit") break;
+
                     await Engine.ProcessCommand(player, line);
                 }
             }
-            catch { /* Odpojení */ }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Connection lost with a player: {ex.Message}");
+            }
             finally
             {
                 if (player != null)
                 {
                     Engine.RemovePlayer(player);
-                    await Engine.Broadcast($"*** {player.Name} odcválal pryč ***");
+                    await Engine.Broadcast($"*** {player.Name} has ridden away ***");
                 }
             }
         }

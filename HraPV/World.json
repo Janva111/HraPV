@@ -1,0 +1,82 @@
+{
+  "courtyard": {
+    "Name": "Castle Courtyard",
+    "Description": "You are standing on a paved courtyard. Towering castle walls rise above you.",
+    "Exits": {
+      "north": "throne room",
+      "east": "armory"
+    },
+    "Items": [ "rusty_sword" ],
+    "NPCs": { "guard": "Welcome! Watch your coin purse." }
+  },
+  "throne room": {
+    "Name": "Throne Room",
+    "Description": "A magnificent hall lit by many candlesticks.",
+    "Exits": { "south": "courtyard" },
+    "Items": [ "golden_cup" ]
+  },
+  "armory": {
+    "Name": "Armory",
+    "Description": "A room filled with empty suits of armor and weapon racks.",
+    "Exits": { "west": "courtyard" },
+    "Items": [ "shield" ]
+  },
+  "barracks": {
+    "Name": "Soldiers' Barracks",
+    "Description": "A row of simple wooden bunks where the castle guards rest. The air smells of old leather and sweat.",
+    "Exits": {
+      "west": "armory",
+      "north": "training grounds"
+    },
+    "Items": [ "gambeson" ],
+    "NPCs": { "sergeant": "Keep it quiet! Some of us are trying to sleep." }
+  },
+  "training grounds": {
+    "Name": "Training Grounds",
+    "Description": "An open area behind the barracks with straw targets and wooden fencing.",
+    "Exits": { "south": "barracks" },
+    "Items": [ "training_dummy", "wooden_arrow" ],
+    "NPCs": { "master-at-arms": "Work on your footwork, knight!" }
+  },
+  "kitchen": {
+    "Name": "Castle Kitchen",
+    "Description": "A hot, busy room filled with the smell of roasting meat and fresh bread.",
+    "Exits": {
+      "west": "throne room",
+      "down": "cellar"
+    },
+    "Items": [ "apple", "bread" ],
+    "NPCs": { "cook": "Out of my kitchen! I'm busy preparing the feast." }
+  },
+  "cellar": {
+    "Name": "Wine Cellar",
+    "Description": "A dark, chilly basement filled with giant wooden barrels and dusty bottles.",
+    "Exits": { "up": "kitchen" },
+    "Items": [ "wine_bottle", "old_key" ],
+    "NPCs": { "rat": "Squeak!" }
+  },
+  "library": {
+    "Name": "Grand Library",
+    "Description": "Floor-to-ceiling shelves packed with ancient scrolls and leather-bound books.",
+    "Exits": {
+      "east": "throne room",
+      "up": "wizard tower"
+    },
+    "Items": [ "old_book", "feather_pen" ],
+    "NPCs": { "scribe": "Shhh! Silence is required in the hall of knowledge." }
+  },
+  "wizard tower": {
+    "Name": "Wizard's Tower",
+    "Description": "The highest room in the tower. Strange blue lights flicker in the corners and an iron cauldron bubbles in the middle.",
+    "Exits": { "down": "library" },
+    "Items": [ "blue_potion", "crystal_ball" ],
+    "NPCs": { "wizard": "Careful where you step. My experiments are... volatile." }
+  },
+  "dungeon": {
+    "Name": "Dark Dungeon",
+    "Description": "A damp, windowless prison under the castle. You can hear water dripping from the ceiling.",
+    "Exits": { "up": "courtyard" },
+    "Items": [ "heavy_chains" ],
+    "NPCs": { "prisoner": "Can you spare some water, sir?" }
+  }
+}

@@ -7,7 +7,7 @@ namespace HraPV;
 public class Player
 {
     public string Name { get; set; } = "";
-    public string Location { get; set; } = "nádvoří";
+    public string CurrentRoom { get; set; } = "courtyard";
     public List<string> Inventory { get; } = new();
     public int MaxInventory { get; } = 3;
 
@@ -27,6 +27,6 @@ public class Player
             await _writer.WriteLineAsync(message);
             await _writer.FlushAsync();
         }
-        catch { /* Ignorovat chyby zápisu, ošetřeno v hlavní smyčce */ }
+        catch {}
     }
 }

@@ -1,31 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Text.Json;
 
 namespace HraPV
 {
     public static class World
     {
-        public static readonly Dictionary<string, Room> Rooms = new()
+        public static Dictionary<string, Room> Rooms { get; private set; } = new();
+
+        public static void LoadWorld(string filePath)
         {
-            ["nádvoří"] = new Room("Hradní nádvoří", "Stojíš na dlážděném nádvoří. Nad tebou se tyčí věže hradu.")
+            try
             {
-                Exits = new() { ["sever"] = "trůnní sál", ["východ"] = "zbrojnice" },
-                Items = new() { "rezavý_meč" },
-                NPCs = new() { ["strážný"] = "Vítej! Hlídej si svůj měšec." }
-            },
-            ["trůnní sál"] = new Room("Trůnní sál", "Velkolepá síň ozářená svícny.")
-            {
-                Exits = new() { ["jih"] = "nádvoří" },
-                Items = new() { "zlatý_pohár" }
-            },
-            ["zbrojnice"] = new Room("Zbrojnice", "Místnost plná prázdných brnění a stojanů.")
-            {
-                Exits = new() { ["západ"] = "nádvoří" },
-                Items = new() { "štít" }
+                if (!File.Exists(filePath))
+                {
+                    return;
+                }
+
+                string jsonString = File.ReadAllText(filePath);
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var loadedRooms = JsonSerializer.Deserialize<Dictionary<string, Room>>(jsonString, options);
+
+                if (loadedRooms != null)
+                {
+                    Rooms = loadedRooms;
+                    Console.WriteLine("World successfully loaded from JSON.");
+                }
             }
-        };
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while loading the world: {ex.Message}");
+            }
+        }
     }
 }
