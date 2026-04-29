@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
-namespace HraPV
+namespace HraPV.Loaders
 {
     public static class World
     {

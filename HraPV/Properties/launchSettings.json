@@ -5,6 +5,9 @@
     },
     "Container (Dockerfile)": {
       "commandName": "Docker"
+    },
+    "Profil 1": {
+      "commandName": "Executable"
     }
   }
 }

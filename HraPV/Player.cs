@@ -1,15 +1,20 @@
-﻿using System.Net;
-using System.Net.Sockets;
-using System.Text;
+﻿using System.Net.Sockets;
 
 namespace HraPV;
 
 public class Player
 {
     public string Name { get; set; } = "";
-    public string CurrentRoom { get; set; } = "courtyard";
-    public List<string> Inventory { get; } = new();
-    public int MaxInventory { get; } = 3;
+    public string Location { get; set; } = "courtyard";
+    public List<string> Inventory { get; set; } = new();
+    public int MaxInventory { get; } = 10;
+
+    public int Gold { get; set; } = 0;
+
+    public int Health { get; set; } = 100;
+    public int MaxHealth { get; set; } = 100;
+
+    public bool IsAlive => Health > 0;
 
     private readonly StreamWriter _writer;
     private readonly TcpClient _client;
@@ -24,9 +29,17 @@ public class Player
     {
         try
         {
-            await _writer.WriteLineAsync(message);
-            await _writer.FlushAsync();
+            if (_writer != null)
+            {
+                await _writer.WriteLineAsync(message);
+                await _writer.FlushAsync();
+            }
         }
-        catch {}
+        catch{}
+    }
+
+    public void RestoreHealth()
+    {
+        Health = MaxHealth;
     }
 }

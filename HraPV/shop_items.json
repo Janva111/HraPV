@@ -1,0 +1,14 @@
+﻿{
+  "sword": {
+    "Price": 50,
+    "Description": "A sharp steel blade."
+  },
+  "shield": {
+    "Price": 40,
+    "Description": "Reinforced wooden shield."
+  },
+  "potion": {
+    "Price": 10,
+    "Description": "Heals minor wounds."
+  }
+}

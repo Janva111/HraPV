@@ -1,0 +1,22 @@
+﻿{
+  "torch": {
+    "Ingredients": [ "stick", "cloth" ],
+    "Result": "torch",
+    "Description": "A flickering torch to light your way in the dungeon."
+  },
+  "healing_salve": {
+    "Ingredients": [ "herb", "herb", "water_flask" ],
+    "Result": "healing_salve",
+    "Description": "A thick paste that restores your health completely."
+  },
+  "sharpened_sword": {
+    "Ingredients": [ "rusty_sword", "wine_bottle" ],
+    "Result": "knight_blade",
+    "Description": "You used the alcohol to clean the rust. The blade is now lethal."
+  },
+  "bandage": {
+    "Ingredients": [ "cloth", "cloth" ],
+    "Result": "clean_bandage",
+    "Description": "Simple bandages to stop minor bleeding."
+  }
+}

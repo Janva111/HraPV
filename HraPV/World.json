@@ -4,79 +4,87 @@
     "Description": "You are standing on a paved courtyard. Towering castle walls rise above you.",
     "Exits": {
       "north": "throne room",
-      "east": "armory"
+      "east": "armory",
+      "down": "dungeon"
     },
-    "Items": [ "rusty_sword" ],
+    "Items": [ "stick", "rusty_sword" ],
     "NPCs": { "guard": "Welcome! Watch your coin purse." }
   },
   "throne room": {
     "Name": "Throne Room",
     "Description": "A magnificent hall lit by many candlesticks.",
-    "Exits": { "south": "courtyard" },
+    "Exits": {
+      "south": "courtyard",
+      "east": "kitchen",
+      "west": "library"
+    },
     "Items": [ "golden_cup" ]
   },
   "armory": {
     "Name": "Armory",
-    "Description": "A room filled with empty suits of armor and weapon racks.",
-    "Exits": { "west": "courtyard" },
-    "Items": [ "shield" ]
+    "Description": "A room filled with empty suits of armor. You see some old rags on the floor.",
+    "Exits": {
+      "west": "courtyard",
+      "east": "barracks"
+    },
+    "Items": [ "cloth", "shield" ]
   },
   "barracks": {
     "Name": "Soldiers' Barracks",
-    "Description": "A row of simple wooden bunks where the castle guards rest. The air smells of old leather and sweat.",
+    "Description": "A row of simple wooden bunks. A few torches lie unlit in the corner.",
     "Exits": {
       "west": "armory",
       "north": "training grounds"
     },
-    "Items": [ "gambeson" ],
-    "NPCs": { "sergeant": "Keep it quiet! Some of us are trying to sleep." }
+    "Items": [ "stick", "gambeson" ],
+    "NPCs": { "sergeant": "Keep it quiet!" }
   },
   "training grounds": {
     "Name": "Training Grounds",
-    "Description": "An open area behind the barracks with straw targets and wooden fencing.",
+    "Description": "An open area. Wild herbs grow near the wooden fencing.",
     "Exits": { "south": "barracks" },
-    "Items": [ "training_dummy", "wooden_arrow" ],
-    "NPCs": { "master-at-arms": "Work on your footwork, knight!" }
+    "Items": [ "herb", "training_dummy" ],
+    "NPCs": { "master-at-arms": "Work on your footwork!" }
   },
   "kitchen": {
     "Name": "Castle Kitchen",
-    "Description": "A hot, busy room filled with the smell of roasting meat and fresh bread.",
+    "Description": "A hot room. There is a large barrel of fresh spring water here.",
     "Exits": {
       "west": "throne room",
       "down": "cellar"
     },
-    "Items": [ "apple", "bread" ],
-    "NPCs": { "cook": "Out of my kitchen! I'm busy preparing the feast." }
+    "Items": [ "water_flask", "apple", "bread" ],
+    "NPCs": { "cook": "Out of my kitchen!" }
   },
   "cellar": {
     "Name": "Wine Cellar",
-    "Description": "A dark, chilly basement filled with giant wooden barrels and dusty bottles.",
+    "Description": "A dark, chilly basement. Mushrooms and strange herbs grow in the damp corners.",
     "Exits": { "up": "kitchen" },
-    "Items": [ "wine_bottle", "old_key" ],
+    "Items": [ "herb", "wine_bottle", "old_key" ],
     "NPCs": { "rat": "Squeak!" }
   },
   "library": {
     "Name": "Grand Library",
-    "Description": "Floor-to-ceiling shelves packed with ancient scrolls and leather-bound books.",
+    "Description": "Shelves packed with books. You see scraps of parchment and cloth used as bookmarks.",
     "Exits": {
       "east": "throne room",
       "up": "wizard tower"
     },
-    "Items": [ "old_book", "feather_pen" ],
-    "NPCs": { "scribe": "Shhh! Silence is required in the hall of knowledge." }
+    "Items": [ "cloth", "old_book" ],
+    "NPCs": { "scribe": "Shhh!" }
   },
   "wizard tower": {
     "Name": "Wizard's Tower",
-    "Description": "The highest room in the tower. Strange blue lights flicker in the corners and an iron cauldron bubbles in the middle.",
+    "Description": "The air is thick with magic. Vials of strange liquids are scattered around.",
     "Exits": { "down": "library" },
-    "Items": [ "blue_potion", "crystal_ball" ],
-    "NPCs": { "wizard": "Careful where you step. My experiments are... volatile." }
+    "Items": [ "herb", "blue_potion", "crystal_ball" ],
+    "NPCs": { "wizard": "Careful, my experiments are volatile." }
   },
   "dungeon": {
     "Name": "Dark Dungeon",
-    "Description": "A damp, windowless prison under the castle. You can hear water dripping from the ceiling.",
+    "Description": "A damp prison. You find some old rags (cloth) discarded in a cell.",
     "Exits": { "up": "courtyard" },
-    "Items": [ "heavy_chains" ],
+    "Items": [ "cloth", "heavy_chains" ],
     "NPCs": { "prisoner": "Can you spare some water, sir?" }
   }
 }
