@@ -5,29 +5,36 @@ namespace HraPV.Commands;
 
 public class Interaction
 {
-    public async Task HandleShop(Player player)
+        public async Task HandleShop(Player player)
     {
+        // 1. Získáme aktuální místnost z tvého statického Worldu
         if (World.Rooms.TryGetValue(player.Location, out var room))
         {
-            var merchantEntry = room.NPCs.FirstOrDefault(n => n.Value.Shop != null && n.Value.Shop.Count > 0);
+            var merchantPair = room.NPCs.FirstOrDefault(n => n.Value.Shop != null && n.Value.Shop.Count > 0);
 
-            if (merchantEntry.Value != null)
+            if (merchantPair.Value != null)
             {
-                var sb = new StringBuilder();
-                sb.AppendLine($"\n--- {merchantEntry.Key.ToUpper()}'S SHOP ---");
-                sb.AppendLine($"Your gold: {player.Gold}g");
-                sb.AppendLine("Items for sale:");
+                var name = merchantPair.Key;
+                var npc = merchantPair.Value;
 
-                foreach (var item in merchantEntry.Value.Shop)
+                var sb = new StringBuilder();
+                sb.AppendLine($"\n=== {name.ToUpper()}'S TRADING POST ===");
+                sb.AppendLine($"Your Purse: {player.Gold} gold");
+                sb.AppendLine("--------------------------------");
+
+                foreach (var item in npc.Shop)
                 {
-                    sb.AppendLine($"- {item.Key}: {item.Value} gold");
+                    sb.AppendLine($"{item.Key} | {item.Value} gold");
                 }
-                sb.AppendLine("--------------------------");
+
+                sb.AppendLine("--------------------------------");
+                sb.AppendLine("Type 'buy <item>' to purchase.");
+
                 await player.Send(sb.ToString());
             }
             else
             {
-                await player.Send("There is no merchant here selling anything.");
+                await player.Send("There's no one here to trade with.");
             }
         }
     }
