@@ -13,12 +13,11 @@ class Program
     static async Task Main()
     {
         World.LoadWorld("World.json");
-        Shop.LoadCatalog();
         Crafting.LoadRecipes();
 
         TcpListener listener = new(IPAddress.Any, Port);
         listener.Start();
-        Console.WriteLine($"[SERVER] Knightly MUD started on port {Port}...");
+        Console.WriteLine($"[SERVER] Server started on port {Port}...");
 
         while (true)
         {
@@ -38,7 +37,8 @@ class Program
         try
         {
             await writer.WriteLineAsync("Welcome to the Medeavle game");
-            await writer.WriteLineAsync("--- LOGIN ---");
+            await writer.WriteLineAsync("Please log in to continue.");
+                await writer.WriteLineAsync("--- LOGIN ---");
             await writer.WriteLineAsync("Enter Username:");
             string? username = await reader.ReadLineAsync();
             
@@ -57,7 +57,9 @@ class Program
                 return;
             }
 
-            player = new Player(client, writer) 
+            await writer.WriteLineAsync($"Welcome back, {username}! Your task is to get the Holy Grail and bring it back to your king.");
+
+                player = new Player(client, writer) 
             { 
                 Name = username,
                 Location = account!.CurrentLocation,

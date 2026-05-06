@@ -8,7 +8,7 @@ namespace HraPV
 {
     public class Npc
     {
-        public string Dialog { get; set; } = "";
-        public Dictionary<string, int> Shop { get; set; } = new();
+        public string? Dialog { get; set; } = "";
+        public Dictionary<string, int>? Shop { get; set; } = new();
     }
 }

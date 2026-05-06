@@ -1,13 +1,14 @@
-﻿using HraPV.Loaders;
+﻿using HraPV;
+using HraPV.Loaders;
+using System.Diagnostics;
 using System.Text;
 
 namespace HraPV.Commands;
 
 public class Interaction
 {
-        public async Task HandleShop(Player player)
+    public async Task HandleShop(Player player)
     {
-        // 1. Získáme aktuální místnost z tvého statického Worldu
         if (World.Rooms.TryGetValue(player.Location, out var room))
         {
             var merchantPair = room.NPCs.FirstOrDefault(n => n.Value.Shop != null && n.Value.Shop.Count > 0);
@@ -41,18 +42,46 @@ public class Interaction
 
     public async Task HandleBuy(Player player, string itemName)
     {
-        var catalog = Shop.GetCatalog();
-        if (catalog.TryGetValue(itemName.ToLower(), out var item))
+        if (string.IsNullOrWhiteSpace(itemName))
         {
-            if (player.Gold >= item.Price && player.Inventory.Count < player.MaxInventory)
-            {
-                player.Gold -= item.Price;
-                player.Inventory.Add(itemName.ToLower());
-                await player.Send($"You bought {itemName} for {item.Price} Gold.");
-            }
-            else await player.Send("Not enough gold or inventory is full.");
+            await player.Send("What do you want to buy?");
+            return;
         }
-        else await player.Send("The merchant doesn't sell that.");
+
+        if (World.Rooms.TryGetValue(player.Location, out var room))
+        {
+            var merchantEntry = room.NPCs.FirstOrDefault(n => n.Value.Shop != null && n.Value.Shop.ContainsKey(itemName.ToLower()));
+
+            if (merchantEntry.Value != null)
+            {
+                var npc = merchantEntry.Value;
+                int price = npc.Shop[itemName.ToLower()];
+
+                if (player.Gold >= price)
+                {
+                    if (player.Inventory.Count < player.MaxInventory)
+                    {
+                        player.Gold -= price;
+                        player.Inventory.Add(itemName.ToLower());
+
+                        await player.Send($"You bought {itemName} for {price} Gold. (Remaining: {player.Gold}g)");
+                        Logger.Log($"[PURCHASE] {player.Name} bought {itemName} for {price}g.");
+                    }
+                    else
+                    {
+                        await player.Send("Your inventory is full!");
+                    }
+                }
+                else
+                {
+                    await player.Send($"You don't have enough gold! It costs {price}g, but you only have {player.Gold}g.");
+                }
+            }
+            else
+            {
+                await player.Send("There is no merchant here selling that item.");
+            }
+        }
     }
 
     public async Task HandleCraft(Player player, List<string> ingredients)

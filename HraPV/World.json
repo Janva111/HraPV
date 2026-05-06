@@ -8,7 +8,11 @@
       "down": "dungeon"
     },
     "Items": [ "stick", "rusty_sword" ],
-    "NPCs": { "guard": "Welcome! Watch your coin purse." }
+    "NPCs": {
+      "guard": {
+        "Dialog": "Welcome! Watch your coin purse."
+      }
+    }
   },
   "throne room": {
     "Name": "Throne Room",
@@ -20,13 +24,15 @@
     },
     "Items": [ "golden_cup" ],
     "NPCs": {
-      "king": "Welcome to my castle, traveler!",
+      "king": {
+        "Dialog": "Welcome to my castle, traveler!"
+      },
       "merchant": {
         "Shop": {
           "blue_potion": 15,
-          "holy_grail": 500,
           "healing_salve": 30,
           "bread": 12,
+          "apple": 10,
           "wine_bottle": 8
         }
       }
@@ -49,15 +55,23 @@
       "north": "training grounds"
     },
     "Items": [ "stick", "gambeson" ],
-    "NPCs": { "sergeant": "Keep it quiet!" }
+    "NPCs": {
+      "sergeant": {
+        "Dialog": "Keep it quiet!"
+      }
+    }
   },
   "training grounds": {
     "Name": "Training Grounds",
     "Description": "An open area. Wild herbs grow near the wooden fencing.",
-    "Exits": { "south": "barracks" },
+    "Exits": {
+      "south": "barracks"
+    },
     "Items": [ "herb", "training_dummy" ],
     "NPCs": {
-      "master-at-arms": "Work on your footwork!",
+      "master-at-arms": {
+        "Dialog": "Work on your footwork!"
+      },
       "merchant": {
         "Shop": {
           "shield": 20,
@@ -77,14 +91,24 @@
       "down": "cellar"
     },
     "Items": [ "water_flask", "apple", "bread" ],
-    "NPCs": { "cook": "Out of my kitchen!" }
+    "NPCs": {
+      "cook": {
+        "Dialog": "Out of my kitchen!"
+      }
+    }
   },
   "cellar": {
     "Name": "Wine Cellar",
     "Description": "A dark, chilly basement. Mushrooms and strange herbs grow in the damp corners.",
-    "Exits": { "up": "kitchen" },
+    "Exits": {
+      "up": "kitchen"
+    },
     "Items": [ "herb", "wine_bottle", "old_key" ],
-    "NPCs": { "rat": "Squeak!" }
+    "NPCs": {
+      "rat": {
+        "Dialog": "Squeak!"
+      }
+    }
   },
   "library": {
     "Name": "Grand Library",
@@ -94,31 +118,45 @@
       "up": "wizard tower"
     },
     "Items": [ "cloth", "old_book" ],
-    "NPCs": { "scribe": "Shhh!" }
+    "NPCs": {
+      "scribe": {
+        "Dialog": "Shhh!"
+      }
+    }
   },
   "wizard tower": {
     "Name": "Wizard's Tower",
     "Description": "The air is thick with magic. Vials of strange liquids are scattered around.",
-    "Exits": { "down": "library" },
+    "Exits": {
+      "down": "library"
+    },
     "Items": [ "herb", "blue_potion", "crystal_ball" ],
     "NPCs": {
-      "wizard": "Careful, my experiments are volatile.",
+      "wizard": {
+        "Dialog": "Careful, my experiments are volatile."
+      },
       "merchant": {
         "Shop": {
           "iron_sword": 50,
           "torch": 10,
           "healing_salve": 30,
           "wine_bottle": 8,
-          "apple": 10
+          "holy_grail": 500
         }
       }
-     }
+    }
   },
   "dungeon": {
     "Name": "Dark Dungeon",
     "Description": "A damp prison. You find some old rags (cloth) discarded in a cell.",
-    "Exits": { "up": "courtyard" },
+    "Exits": {
+      "up": "courtyard"
+    },
     "Items": [ "cloth", "heavy_chains" ],
-    "NPCs": { "prisoner": "Can you spare some water, sir?" }
+    "NPCs": {
+      "prisoner": {
+        "Dialog": "Can you spare some water, sir?"
+      }
+    }
   }
 }

@@ -13,24 +13,23 @@ namespace HraPV.Loaders
         {
             try
             {
-                if (!File.Exists(filePath))
-                {
-                    return;
-                }
-
                 string jsonString = File.ReadAllText(filePath);
-                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                var loadedRooms = JsonSerializer.Deserialize<Dictionary<string, Room>>(jsonString, options);
-
-                if (loadedRooms != null)
+                var options = new JsonSerializerOptions
                 {
-                    Rooms = loadedRooms;
-                    Console.WriteLine("World successfully loaded from JSON.");
-                }
+                    PropertyNameCaseInsensitive = true,
+                    AllowTrailingCommas = true
+                };
+
+                Rooms = JsonSerializer.Deserialize<Dictionary<string, Room>>(jsonString, options) ?? new();
+                Console.WriteLine($"Uspěšně načteno {Rooms.Count} místností.");
+            }
+            catch (JsonException jex)
+            {
+                Console.WriteLine($"Chyba ve struktuře JSONu: {jex.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while loading the world: {ex.Message}");
+                Console.WriteLine($"Obecná chyba: {ex.Message}");
             }
         }
     }
