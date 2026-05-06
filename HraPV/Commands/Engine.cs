@@ -12,7 +12,6 @@ public class Engine
     private readonly List<Player> _players = new();
     private readonly object _lock = new();
 
-    // Specializovaní manažeři pro rozdělení logiky
     private readonly Combat _combat;
     private readonly Interaction _interaction;
 

@@ -7,15 +7,29 @@ public class Interaction
 {
     public async Task HandleShop(Player player)
     {
-        if (World.Rooms.TryGetValue(player.Location, out var room) && room.NPCs.ContainsKey("Merchant"))
+        if (World.Rooms.TryGetValue(player.Location, out var room))
         {
-            var sb = new StringBuilder().AppendLine("\n--- MERCHANT'S WARE ---");
-            foreach (var item in Shop.GetCatalog())
-                sb.AppendLine($"{item.Key.PadRight(10)} | {item.Value.Price} Gold | {item.Value.Description}");
-            sb.AppendLine($"\nYour balance: {player.Gold} Gold");
-            await player.Send(sb.ToString());
+            var merchantEntry = room.NPCs.FirstOrDefault(n => n.Value.Shop != null && n.Value.Shop.Count > 0);
+
+            if (merchantEntry.Value != null)
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine($"\n--- {merchantEntry.Key.ToUpper()}'S SHOP ---");
+                sb.AppendLine($"Your gold: {player.Gold}g");
+                sb.AppendLine("Items for sale:");
+
+                foreach (var item in merchantEntry.Value.Shop)
+                {
+                    sb.AppendLine($"- {item.Key}: {item.Value} gold");
+                }
+                sb.AppendLine("--------------------------");
+                await player.Send(sb.ToString());
+            }
+            else
+            {
+                await player.Send("There is no merchant here selling anything.");
+            }
         }
-        else await player.Send("There is no merchant here.");
     }
 
     public async Task HandleBuy(Player player, string itemName)

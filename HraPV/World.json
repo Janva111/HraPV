@@ -18,7 +18,19 @@
       "east": "kitchen",
       "west": "library"
     },
-    "Items": [ "golden_cup" ]
+    "Items": [ "golden_cup" ],
+    "NPCs": {
+      "king": "Welcome to my castle, traveler!",
+      "merchant": {
+        "Shop": {
+          "blue_potion": 15,
+          "holy_grail": 500,
+          "healing_salve": 30,
+          "bread": 12,
+          "wine_bottle": 8
+        }
+      }
+    }
   },
   "armory": {
     "Name": "Armory",
@@ -44,7 +56,18 @@
     "Description": "An open area. Wild herbs grow near the wooden fencing.",
     "Exits": { "south": "barracks" },
     "Items": [ "herb", "training_dummy" ],
-    "NPCs": { "master-at-arms": "Work on your footwork!" }
+    "NPCs": {
+      "master-at-arms": "Work on your footwork!",
+      "merchant": {
+        "Shop": {
+          "shield": 20,
+          "iron_sword": 50,
+          "torch": 10,
+          "healing_salve": 30,
+          "wine_bottle": 8
+        }
+      }
+    }
   },
   "kitchen": {
     "Name": "Castle Kitchen",
@@ -78,7 +101,18 @@
     "Description": "The air is thick with magic. Vials of strange liquids are scattered around.",
     "Exits": { "down": "library" },
     "Items": [ "herb", "blue_potion", "crystal_ball" ],
-    "NPCs": { "wizard": "Careful, my experiments are volatile." }
+    "NPCs": {
+      "wizard": "Careful, my experiments are volatile.",
+      "merchant": {
+        "Shop": {
+          "iron_sword": 50,
+          "torch": 10,
+          "healing_salve": 30,
+          "wine_bottle": 8,
+          "apple": 10
+        }
+      }
+     }
   },
   "dungeon": {
     "Name": "Dark Dungeon",
